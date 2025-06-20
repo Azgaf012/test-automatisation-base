@@ -1,7 +1,7 @@
 @REQ_MC_API_001
 @HU_MC_API_001
-@descripcion("Obtener lista de todos los personajes")
-@nombre_microservicio("Marvel Characters API")
+@descripcion("get_all_characters")
+@marvel_characters_api
 Feature: Obtener todos los personajes de Marvel
 
   Background:

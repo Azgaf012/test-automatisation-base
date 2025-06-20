@@ -1,7 +1,7 @@
 @REQ_MC_API_002
 @HU_MC_API_002
-@descripcion("Obtener un personaje por su ID")
-@nombre_microservicio("Marvel Characters API")
+@descripcion("get_character_by_id")
+@marvel_characters_api
 Feature: Obtener personaje por ID
 
   Background:
