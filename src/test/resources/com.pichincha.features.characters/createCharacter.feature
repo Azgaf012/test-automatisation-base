@@ -2,22 +2,18 @@
 @HU_MC_API_003
 @descripcion("create_new_character")
 @marvel_characters_api
+@agente2
+@E2
+@iniciativa_marvel_characters_api
 Feature: Create a new character
 
   Background:
     * url port_characters
     * configure headers = { 'Content-Type': 'application/json' }
 
+  @id:CA01 @create_success @status_201
   Scenario: T-API-MC_API_003-CA01-Create character successfully 201 - karate
-    * def requestPayload =
-      """
-      {
-        "name": "Hulk",
-        "alterego": "Bruce Banner",
-        "description": "Scientist exposed to gamma radiation who turns into a green monster.",
-        "powers": ["Super strength", "Endurance", "Regeneration"]
-      }
-      """
+    * def requestPayload = read('classpath:data/marvel_characters_api/createCharacter.json')
     Given path 'zuniga.andree', 'api', 'characters'
     And request requestPayload
     When method post
@@ -28,32 +24,18 @@ Feature: Create a new character
     And match response.description == requestPayload.description
     And match each response.powers[*] == '#string'
 
+  @id:CA02 @duplicate_error @status_400
   Scenario: T-API-MC_API_003-CA02-Error on duplicate character 400 - karate
-    * def duplicatePayload =
-      """
-      {
-        "name": "Iron Man",
-        "alterego": "Another",
-        "description": "Duplicate test",
-        "powers": ["Armor"]
-      }
-      """
+    * def duplicatePayload = read('classpath:data/marvel_characters_api/duplicateCharacter.json')
     Given path 'zuniga.andree', 'api', 'characters'
     And request duplicatePayload
     When method post
     Then status 400
     And match response.error == 'Character name already exists'
 
+  @id:CA03 @validation_error @status_400
   Scenario: T-API-MC_API_003-CA03-Error on missing fields 400 - karate
-    * def invalidPayload =
-      """
-      {
-        "name": "",
-        "alterego": "",
-        "description": "",
-        "powers": []
-      }
-      """
+    * def invalidPayload = read('classpath:data/marvel_characters_api/invalidCharacter.json')
     Given path 'zuniga.andree', 'api', 'characters'
     And request invalidPayload
     When method post
