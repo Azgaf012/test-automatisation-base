@@ -1,0 +1,12 @@
+{
+  "name": "Spider-Man",
+  "alterego": "Peter Parker",
+  "description": "Protector amistoso de Nueva York, más fuerte que nunca.",
+  "powers": [
+    "Super fuerza",
+    "Agilidad sobrehumana",
+    "Sentido arácnido",
+    "Trepar muros",
+    "Regeneración"
+  ]
+}
